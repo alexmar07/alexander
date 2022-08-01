@@ -1,5 +1,6 @@
 <?php
 
+use AlexDev\Alexander\Alexander;
 use AlexDev\Alexander\Core\Maker;
 use AlexDev\Alexander\Handlers\Translator;
 
@@ -13,8 +14,8 @@ if ( ! function_exists('load_config') ) {
      *
      * @return array
      */
-    function load_config(string $file) : array {
-        return require __DIR__."/config/{$file}.php";
+    function load_config(string $file = 'config') : array {
+        return require base_path()."/config/{$file}.php";
     }
 }
 
@@ -27,7 +28,7 @@ if ( ! function_exists('make') ) {
      *
      * @return object
      */
-    function make(string $class) {
+    function make(string|Object $class) {
 
         $istance = Maker::make($class);
 
@@ -61,3 +62,16 @@ if ( ! function_exists('resource_path') ) {
         return $path['resource'] ?? null;
     }
 }
+
+if ( ! function_exists('base_path') ) {
+
+    /**
+     * Get root path
+     *
+     * @return string|null
+     */
+    function base_path () : string {
+        return make(Alexander::class)->basePath;
+    }
+}
+

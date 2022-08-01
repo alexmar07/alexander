@@ -10,17 +10,17 @@ return [
      * Path for config
      *
      */
-    'config'   => __DIR__,
+    'config'   => base_path().'/config',
 
     /**
      * Path for resorces
      *
      */
-    'resource'  => __DIR__.'/../resources',
+    'resources'  => base_path().'/resources',
 
     /**
      * Path for local configuration
      *
      */
-    'local'     => __DIR__.'/../../.local',
+    'local'     => base_path().'/resources/local',
 ];

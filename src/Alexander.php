@@ -1,5 +1,6 @@
 <?php namespace AlexDev\Alexander;
 
+use Dotenv\Dotenv;
 use Symfony\Component\Console\Application;
 
 /**
@@ -25,18 +26,34 @@ class Alexander {
      *
      * @access private
      *
-     * @var object|null
+     * @var array|null
      */
-    protected ?object $config = null;
+    protected ?array $config = null;
+
+    /**
+     * Path root of project
+     *
+     * @access public
+     *
+     * @readonly
+     *
+     * @var string
+     */
+    public readonly string $basePath;
 
     //-----------------------------------------------------------------------
 
     /**
      * Constructor
      *
+     * @param string $basePath  Base path application
+     *
      */
-    public function __construct() {
+    public function __construct(string $basePath) {
+
         $this->app = new Application($this->name(), $this->version());
+
+        $this->basePath = $basePath;
 
         $this->bootConfig();
         $this->bootCommands();
@@ -107,10 +124,12 @@ class Alexander {
      */
     protected function bootConfig() {
 
-        $config = require __DIR__.'/config/config.php';
+        $config = load_config();
 
         foreach (array_keys($config) as $key) {
-            $this->config->{$key} = $config[$key];
+
+            $this->config[$key] = $config[$key];
+
         }
     }
 
@@ -125,14 +144,30 @@ class Alexander {
      */
     protected function bootCommands () : void {
 
-        if ( ! isset($this->config->commands) || empty($this->config->commands) ) return;
+        if ( ! isset($this->config['commands']) || empty($this->config['commands']) ) return;
 
-        foreach ($this->config->commands as $command) {
+        foreach ($this->config['commands'] as $command) {
 
             if ( ! class_exists($command) ) continue;
 
             $this->registerCommand($command);
         }
+
+    }
+
+    //-----------------------------------------------------------------------
+
+    /**
+     * Load environment vars
+     *
+     * @access public
+     *
+     * @return void
+     */
+    public  function loadEnv() : void {
+
+        $dotenv = Dotenv::createUnsafeImmutable($this->basePath.'/..');;
+        $dotenv->safeLoad();
 
     }
 }

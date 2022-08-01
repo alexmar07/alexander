@@ -4,4 +4,8 @@ use AlexDev\Alexander\Alexander;
 
 require __DIR__.'/../../vendor/autoload.php';
 
-return new Alexander();
+$alexander = make(new Alexander(dirname(__DIR__)));
+
+$alexander->loadEnv();
+
+return $alexander;
