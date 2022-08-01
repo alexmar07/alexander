@@ -1,5 +1,8 @@
 /vendor/
 
+/src/resources/local/*
+!/src/resources/local/.gitkeep
+
 composer.lock
 
 .env
