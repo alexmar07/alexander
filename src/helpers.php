@@ -71,7 +71,7 @@ if ( ! function_exists('base_path') ) {
      * @return string|null
      */
     function base_path () : string {
-        return make(Alexander::class)->basePath;
+        return dirname(__DIR__).'/src';
     }
 }
 

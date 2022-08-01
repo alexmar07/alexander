@@ -4,6 +4,9 @@
  * Config application
  *
  */
+
+use AlexDev\Alexander\Commands\ConfigureCommand;
+
 return [
 
     /**
@@ -11,7 +14,7 @@ return [
      *
      */
     'commands'  => [
-
+        ConfigureCommand::class,
     ],
 
 ];

@@ -69,7 +69,6 @@ class Maker {
      * @return string   Namespace istance
      */
     private static function makeByObject(object $istance) : string {
-
         if (!isset(self::$instances[$istance::class])) {
             self::$instances[$istance::class] = $istance;
         }
