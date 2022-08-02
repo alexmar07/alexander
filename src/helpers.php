@@ -46,8 +46,8 @@ if ( ! function_exists('trans') ) {
      *
      * @return string
      */
-    function trans(string $key) : string {
-        return make(Translator::class)->trans($key);
+    function trans(string $key, array $params = []) : string {
+        return make(Translator::class)->trans($key, $params);
     }
 }
 
