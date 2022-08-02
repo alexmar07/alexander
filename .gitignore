@@ -4,5 +4,3 @@
 !/src/resources/local/.gitkeep
 
 composer.lock
-
-.env
