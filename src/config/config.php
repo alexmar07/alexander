@@ -6,6 +6,7 @@
  */
 
 use AlexDev\Alexander\Commands\ConfigureCommand;
+use AlexDev\Alexander\Commands\GetEnvCommand;
 
 return [
 
@@ -15,6 +16,7 @@ return [
      */
     'commands'  => [
         ConfigureCommand::class,
+        GetEnvCommand::class
     ],
 
 ];
