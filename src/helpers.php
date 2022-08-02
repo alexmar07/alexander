@@ -1,6 +1,5 @@
 <?php
 
-use AlexDev\Alexander\Alexander;
 use AlexDev\Alexander\Core\Maker;
 use AlexDev\Alexander\Handlers\Translator;
 
@@ -19,6 +18,8 @@ if ( ! function_exists('load_config') ) {
     }
 }
 
+//-----------------------------------------------------------------------
+
 if ( ! function_exists('make') ) {
 
     /**
@@ -36,6 +37,8 @@ if ( ! function_exists('make') ) {
     }
 }
 
+//-----------------------------------------------------------------------
+
 if ( ! function_exists('trans') ) {
 
     /**
@@ -48,6 +51,9 @@ if ( ! function_exists('trans') ) {
     }
 }
 
+//-----------------------------------------------------------------------
+
+
 if ( ! function_exists('resource_path') ) {
 
     /**
@@ -55,13 +61,33 @@ if ( ! function_exists('resource_path') ) {
      *
      * @return string|null
      */
-    function resource_path () : ?string {
+    function resource_path () : string {
 
         $path = load_config('paths');
 
-        return $path['resource'] ?? null;
+        return $path['resources'];
     }
 }
+
+//-----------------------------------------------------------------------
+
+if ( ! function_exists('local_path') ) {
+
+    /**
+     * Get path of local files
+     *
+     * @return string
+     */
+    function local_path () : string {
+
+        $path = load_config('paths');
+
+        return $path['local'];
+    }
+}
+
+//-----------------------------------------------------------------------
+
 
 if ( ! function_exists('base_path') ) {
 
@@ -74,4 +100,6 @@ if ( ! function_exists('base_path') ) {
         return dirname(__DIR__).'/src';
     }
 }
+
+//-----------------------------------------------------------------------
 
