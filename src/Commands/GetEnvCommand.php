@@ -1,36 +1,34 @@
 <?php namespace AlexDev\Alexander\Commands;
 
-use AlexDev\Alexander\Handlers\Yaml;
-use Symfony\Component\Console\Command\Command;
+use AlexDev\Alexander\Core\Status;
+use AlexDev\Alexander\Core\BaseCommand;
 use Symfony\Component\Console\Helper\Table;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
-class GetEnvCommand extends Command {
+/**
+ * Show tables with environment values
+ *
+ * @extends BaseCommand
+ */
+class GetEnvCommand extends BaseCommand {
 
     protected static $defaultName = 'core:get-env';
 
     protected static $defaultDescription = 'Show local environment';
 
-    protected function execute(InputInterface $input, OutputInterface $output): int {
+    protected function handle() : Status {
 
-        $yaml = make(Yaml::class);
+        // Create table instance
+        $table = new Table($this->output);
 
-        if ( ($enviroment = $yaml->load('environment')) === false ) {
-            $output->writeln(trans('environment_not_exist'));
-        }
-        else {
+        $table->setHeaderTitle('Environment');
 
-            $table = new Table($output);
+        // Set table values
+        $table->setHeaders(array_keys($this->env))
+            ->setRows([array_values($this->env)]);
 
-            $table->setHeaderTitle('Environment');
+        // Show table
+        $table->render();
 
-            $table->setHeaders(array_keys($enviroment))
-                ->setRows([array_values($enviroment)]);
-
-            $table->render();
-        }
-
-        return Command::SUCCESS;
+        return Status::Success;
     }
 }
