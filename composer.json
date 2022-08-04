@@ -1,5 +1,5 @@
 {
-    "name": "alexdev/alexander",
+    "name": "alexdev07/alexander",
     "description": "Tools CLI",
     "type": "library",
     "license": "MIT",
@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "php" : "8.1",
+        "php" : "^8.1",
         "symfony/console": "^6.1",
         "symfony/translation": "^6.1",
         "vlucas/phpdotenv": "^5.4",
