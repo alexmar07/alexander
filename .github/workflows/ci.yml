@@ -6,7 +6,7 @@ on:
       - "v*"
 
 env:
-  version: alexdev07/alexander:${GITHUB_REF##*/}
+  version: alexdev07/alexander:${{GITHUB_REF##*/}}
 
 jobs:
   build:
